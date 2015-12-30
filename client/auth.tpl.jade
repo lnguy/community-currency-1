@@ -1,0 +1,9 @@
+
+if currentUser
+  .left
+    +avatar user=currentUser size="large"
+  br
+  span(style="padding: 1em 2rem"): strong #{currentUser.username}
+  p: a.waves-effect.waves-teal.btn-flat.logout Log out
+else
+  +loginButtons

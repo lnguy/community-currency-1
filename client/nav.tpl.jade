@@ -1,0 +1,7 @@
+.navbar-fixed
+  nav: .container: .nav-wrapper
+    a.brand-logo Community Currency
+    ul.right.hide-on-small-only
+      if currentUser
+        li: i.material-icons chevron_right
+          a #{currentUser.username} {{getPublishedCount 'balance'}}

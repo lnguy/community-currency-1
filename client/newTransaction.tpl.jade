@@ -1,0 +1,8 @@
+.container
+  .card: .card-content
+    button.right.btn-floating.btn-large.waves-effect.waves-light {{getPublishedCount 'balance'}}
+    span.card-title Balance
+  
+  .card: .card-content
+    span.card-title Transfer/Send
+    +quickForm type="insert" id="transactionForm" collection="Transactions" doc=doc

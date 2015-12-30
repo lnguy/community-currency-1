@@ -1,0 +1,32 @@
+.container
+  h4 Recent Transactions
+    
+  ul.collapsible
+    +each transactions
+      li
+        .collapsible-header
+          i.material-icons more_vert
+          .right
+            +avatar userId=sender._id shape="circle" size="small"
+          if isCredit
+            .right
+              span.positive #{amount} &nbsp; &nbsp; 
+              i.material-icons arrow_back
+            span.title Received #{amount} from #{sender.username} 
+            
+          else
+            .right
+              span.negative #{amount}
+              i.material-icons.right arrow_forward
+            span.title Sent #{amount} to #{recipientUsername} 
+        .collapsible-body
+          .row
+            .col.m5.s12
+              p 
+                strong Date Sent 
+                | {{date dateSent 'DD/MM/YY'}}
+            .col.m7.s12
+              p
+                strong Reference Info
+                | #{description}
+        
