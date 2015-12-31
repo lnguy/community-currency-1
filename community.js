@@ -1,10 +1,6 @@
 if (Meteor.isClient) {
-
+  Meteor.subscribe("usernames");
   Meteor.subscribe("transactions");
-
-  Template.transactions.onCreated(function(){
-    this.subscribe("usernames");
-  });
 
   Template.auth.events({
     "click .logout": function(event, template){
@@ -85,11 +81,14 @@ if (Meteor.isServer) {
   });
 
   Accounts.onCreateUser(function(options, user){
-    username = user.services.facebook.name;
-    user.username=generate_username(username);
     user.profile = {};
-    user.profile.name = username;
-    user.profile.un = username;
+    if (user.services.facebook) {
+      username = user.services.facebook.name;
+      user.username=generate_username(username);
+
+      user.profile.name = username;
+      user.profile.un = username;
+    }
 
     function generate_username (username) {
       var count;

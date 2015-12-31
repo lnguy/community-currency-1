@@ -3,6 +3,6 @@
     a.brand-logo Community Currency
     ul.right.hide-on-small-only
       if currentUser
-        li
-          i.material-icons chevron_right
-          a #{currentUser.username} {{getPublishedCount 'balance'}}
+        li.active
+          
+          a <span class="left">#{currentUser.username}</span> <i class="material-icons left">chevron_right</i> {{getPublishedCount 'balance'}}

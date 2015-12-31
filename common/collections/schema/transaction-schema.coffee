@@ -28,7 +28,8 @@ schema = new SimpleSchema
       type: "typeahead"
       class: "recipient"
       options: ->
-        Meteor.users.find().fetch().map (it) -> {label: it._id, value: it.username}
+        Meteor.users.find().fetch().map (it) ->
+          {label: it._id, value: it.username}
       typeaheadOptions:
         highlight: true
 
@@ -62,7 +63,7 @@ schema = new SimpleSchema
     autoform: type: 'textarea', class: 'character-count', length: 149
 
 schema.messages
-  'recipientError':'[401] Sorry you cannot have yourself as a recipient.'
-  'unrecognizedUser': "[404] Sorry we can't find that recipient."
+  'recipientError':"[401] Sorry, you can't make a transaction to yourself."
+  'unrecognizedUser': "[404] Sorry, we can't find that person."
 
 Transactions.attachSchema schema
