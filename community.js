@@ -2,6 +2,10 @@ if (Meteor.isClient) {
 
   Meteor.subscribe("transactions");
 
+  Template.transactions.onCreated(function(){
+    this.subscribe("usernames");
+  });
+
   Template.auth.events({
     "click .logout": function(event, template){
        Meteor.logout();
@@ -38,10 +42,16 @@ if (Meteor.isClient) {
     }
 
   });
-  Template.newTransaction.onRendered = function(){
-    this.$('input.recipient').siblings('label').addClass('active')
-    this.$('input.recipient').focus()
-  }
+  // Template.newTransaction.onRendered = function(){
+  //   this.$('input.recipient').siblings('label').addClass('active')
+  //   this.$('input.recipient').focus()
+  // }
+  Template.newTransaction.events({
+    "focus input.recipient, blur input.recipient": function(event, template){
+      console.log('focus or blur on recipient field')
+      $(event.target).parent().siblings('label').toggleClass('active')
+    }
+  });
   Template.newTransaction.helpers({
     // usernames: function() {
     //   return Meteor.users.find().fetch().map(function(it){ return it.username; });
@@ -66,6 +76,28 @@ if (Meteor.isServer) {
     // console.log("insert" in Transactions);
   });
 
+  Accounts.onCreateUser(function(options, user){
+    username = user.services.facebook.name;
+    user.username=generate_username(username);
+    user.profile = {};
+    user.profile.name = username;
+    user.profile.un = username;
+
+    function generate_username (username) {
+      var count;
+      username = username.toLowerCase().trim().replace(" ", "");
+      count = Meteor.users.find({"profile.un": username}).count();
+      if (count === 0) {
+        return username;
+      }
+      else {
+        return username + (count + 1).toString();
+      }
+    }
+
+    return user
+  });
+
   Meteor.publish("transactions", function() {
     let user = this.userId;
     let query = {$or: [{
@@ -88,7 +120,7 @@ if (Meteor.isServer) {
 
   Meteor.publish("usernames", function(){
 
-    return Meteor.users.find({}, {fields: {username:1} })
+    return Meteor.users.find({}, {fields: {username:1, "services.facebook.id":1} })
 
   });
 }

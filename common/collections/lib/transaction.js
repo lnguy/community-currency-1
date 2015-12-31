@@ -1,12 +1,12 @@
 Transactions = new Mongo.Collection("transactions");
-Transactions.allow({ 
-  insert: function(){
-    return true;
+Transactions.allow({
+  insert: function(userId, doc){
+    return !!userId && sender._id === userId;
   },
   update: function(){
-    return true;
+    return false;
   },
   remove: function(){
-    return true;
+    return false;
   }
 });

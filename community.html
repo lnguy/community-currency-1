@@ -9,7 +9,7 @@
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=417899268407004";
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=207337602938263";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script>
   {{> nav}}
@@ -29,7 +29,9 @@
         <p class="flow-text">This demo shows how a community group (or the whole world) could instantly transfer any arbitrary value to another member in seconds. Banks can take days to transfer money to an individual, and while credit card payments are often very fast, they always come with extra charges and hidden costs. This pilot project is meant to demonstrate how fast and easy direct payments could be.</p>
         <p class="flow-text">To give the demo a try, sign up with facebook or your email and send any amount to another user. If you need a user to send to try sending to <strong>dummy</strong></p>
         <p class="flow-text">There are many great UI features that could be included in this project and I hope developers decide to fork and implement some of those potential improvements. I'd love to hear about possible improvements and feedback on twitter.</p>
-        <a href="https://twitter.com/SeanPWStanley" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @SeanPWStanley</a> <iframe src="https://ghbtns.com/github-btn.html?user=twbs&repo=bootstrap&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
+        <p><a href="https://twitter.com/SeanPWStanley" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @SeanPWStanley</a>
+
+        <iframe src="https://ghbtns.com/github-btn.html?user=twbs&repo=bootstrap&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe></p>
 
         <p class="flow-text">This demo is powered by <a href="http://materializecss.com">materialize css</a> and <a href="http://www.meteor.com">Meteor.js</a></p>
       {{/if}}
@@ -63,5 +65,7 @@
       </div>
     </div>
   </footer>
-  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  <script>
+  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+  </script>
 </body>
