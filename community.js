@@ -74,9 +74,7 @@ if (Meteor.isServer) {
         password: Meteor.settings.password
       };
 
-      Accounts.createUser(userObject, function(){
-        console.log('dummy account created');
-      });
+      Accounts.createUser(userObject);
     }
   });
 
