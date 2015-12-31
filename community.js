@@ -48,7 +48,7 @@ if (Meteor.isClient) {
   // }
   Template.newTransaction.events({
     "focus input.recipient, blur input.recipient": function(event, template){
-      console.log('focus or blur on recipient field')
+      if (event.type === 'focusout' || !!event.target.value) {return;}
       $(event.target).parent().siblings('label').toggleClass('active')
     }
   });
@@ -71,9 +71,17 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    // code to run on server at startup
-    // console.log("does the Transactions variable exist as a mongo collection?");
-    // console.log("insert" in Transactions);
+    if (Meteor.users.find().count() === 0 ) {
+      var userObject = {
+        username: "dummy",
+        mail: "sean@maplekiwi.com",
+        password: Meteor.settings.password
+      };
+
+      Accounts.createUser(userObject, function(){
+        console.log('dummy account created');
+      });
+    }
   });
 
   Accounts.onCreateUser(function(options, user){

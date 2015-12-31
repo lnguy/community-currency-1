@@ -16,10 +16,10 @@ schema = new SimpleSchema
     index: 1
     custom: ->
       unless SimpleSchema.RegEx.Id.test(@value)
-        return 'recipientError'
+        return 'unrecognizedUser'
 
       sender = @field 'sender._id'
-      if sender == @value
+      if sender.value == @value
         return 'recipientError'
       else
         return yes
@@ -62,6 +62,7 @@ schema = new SimpleSchema
     autoform: type: 'textarea', class: 'character-count', length: 149
 
 schema.messages
-'recipientError':'Sorry you cannot have yourself as a recipient'
+  'recipientError':'[401] Sorry you cannot have yourself as a recipient.'
+  'unrecognizedUser': "[404] Sorry we can't find that recipient."
 
 Transactions.attachSchema schema

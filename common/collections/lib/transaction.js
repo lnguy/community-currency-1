@@ -1,7 +1,7 @@
 Transactions = new Mongo.Collection("transactions");
 Transactions.allow({
   insert: function(userId, doc){
-    return !!userId && sender._id === userId;
+    return !!userId && doc.sender._id === userId;
   },
   update: function(){
     return false;
